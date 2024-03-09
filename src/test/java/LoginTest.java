@@ -15,18 +15,13 @@ import client.ClientFaker;
 
 import java.util.concurrent.TimeUnit;
 
-public class LoginTest  {
-    private WebDriver driver; // Поле для экземпляра WebDriver
+public class LoginTest extends BrowserConfiguration  {
     private Client client; // Поле для хранения данных о пользователе
     private String accessToken; // Поле для хранения токена доступа
 
     // Метод запускается перед каждым тестом
     @Before
     public void setUp() {
-        // Устанавливаем путь к драйверу Chrome (chromedriver.exe) или Yandex (yandexdriver.exe)
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        // Создаем экземпляр драйвера Chrome
-        driver = new ChromeDriver();
         // Открываем базовый URL
         driver.get(ClientSteps.baseURL);
         // Устанавливаем базовый URL для REST-запросов

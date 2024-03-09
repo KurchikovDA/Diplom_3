@@ -73,6 +73,15 @@
             <version>1.0.2</version>
         </dependency>
 
+        <!-- Подключил библиотеку Lombok -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version> <!-- Убедитесь, что это актуальная версия -->
+            <scope>provided</scope>
+        </dependency>
+
+
     </dependencies>
     <build>
         <plugins>

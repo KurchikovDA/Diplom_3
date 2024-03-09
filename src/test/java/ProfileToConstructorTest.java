@@ -12,19 +12,13 @@ import client.Client; // Импортируем класс Client для раб�
 
 import java.util.concurrent.TimeUnit;
 
-public class ProfileToConstructorTest {
-
-    private WebDriver driver; // Объявляем переменную driver для управления браузером
+public class ProfileToConstructorTest extends BrowserConfiguration {
     private Client client; // Объявляем переменную client для хранения данных пользователя
     private String accessToken; // Объявляем переменную accessToken для хранения токена доступа
 
     // Метод запускается перед каждым тестом
     @Before
     public void setUp() {
-        // Устанавливаем путь к драйверу Chrome (chromedriver.exe) или Yandex (yandexdriver.exe)
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        // Создаем экземпляр драйвера Chrome
-        driver = new ChromeDriver();
         // Открываем базовый URL
         driver.get(ClientSteps.baseURL);
         // Устанавливаем базовый URL для REST-запросов

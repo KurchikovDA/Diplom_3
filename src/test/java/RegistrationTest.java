@@ -16,17 +16,12 @@ import io.restassured.RestAssured;
 
 import java.util.concurrent.TimeUnit;
 
-public class RegistrationTest {
-    private WebDriver driver;
+public class RegistrationTest extends BrowserConfiguration {
     private Client client;
     private String accessToken;
 
     @Before
     public void setUp() {
-        // Устанавливаем путь к драйверу Chrome (chromedriver.exe) или Yandex (yandexdriver.exe)
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-        // Создаем экземпляр драйвера Chrome
-        driver = new ChromeDriver();
         // Открываем веб-сайт
         driver.get(ClientSteps.baseURL);
         // Максимизируем окно браузера
@@ -88,9 +83,14 @@ public class RegistrationTest {
     public void tearDown() {
         // Закрываем браузер после выполнения теста
         driver.quit();
-        // Удаляем пользователя, если он был зарегистрирован и есть токен доступа
+        // Если токен доступа был получен, пытаемся удалить пользователя
         if (accessToken != null) {
-            ClientSteps.deleteClient(accessToken);
+            try {
+                ClientSteps.deleteClient(accessToken);
+            } catch (Exception e) {
+                // Если возникла ошибка при удалении пользователя, выводим сообщение об ошибке
+                System.out.println("Ошибка при удалении пользователя: " + e.getMessage());
+            }
         }
     }
 }
